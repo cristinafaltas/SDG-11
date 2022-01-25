@@ -20,7 +20,7 @@ def index():
     return "Hello world!"
 
 # Questa route effettua una find() su tutto il DB (si limita ai primi 100 risultati)
-@app.route('/ProportionUrbanPopulationSlums', methods=['GET'])
+@app.route('/PopulationSlums', methods=['GET'])
 def get_all_addresses():
     ProportionUrbanPopulationSlums = mongo.db.ProportionUrbanPopulationSlums
     output = []
