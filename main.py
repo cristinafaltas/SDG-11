@@ -21,10 +21,37 @@ def index():
 
 # Questa route effettua una find() su tutto il DB (si limita ai primi 100 risultati)
 @app.route('/PopulationSlums', methods=['GET'])
-def get_all_addresses():
+def get_PopulationSlums():
     ProportionUrbanPopulationSlums = mongo.db.ProportionUrbanPopulationSlums
     output = []
     list_curs = ProportionUrbanPopulationSlums.find({},{"_id":0}).limit(100)
+    
+    return dumps(list(list_curs))
+
+@app.route('/PublicTransport', methods=['GET'])
+def get_PublicTransport():
+    ProportionUrbanPopulationPublicTransport = mongo.db.ProportionUrbanPopulationPublicTransport
+
+    output = []
+    list_curs = ProportionUrbanPopulationPublicTransport.find({},{"_id":0}).limit(100)
+    
+    return dumps(list(list_curs))
+
+@app.route('/UrbanArea', methods=['GET'])
+def get_UrbanArea():
+    ProportionGlobalUrbanArea = mongo.db.ProportionGlobalUrbanArea
+
+    output = []
+    list_curs = ProportionGlobalUrbanArea.find({},{"_id":0}).limit(100)
+    
+    return dumps(list(list_curs))
+
+@app.route('/UrbanPolice', methods=['GET'])
+def get_UrbanPolice():
+    StagesNationalUrbanPolices = mongo.db.StagesNationalUrbanPolices
+
+    output = []
+    list_curs = StagesNationalUrbanPolices.find({},{"_id":0}).limit(100)
     
     return dumps(list(list_curs))
 

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { BeachLitter } from '../models/beach_litter.model';
-import { ChartData } from '../models/geochart.model';
-import { Options } from '@angular-slider/ngx-slider';
+import { Slums } from '../models/slums.model';
+import { ChartData } from '../models/chart.model';
 
 @Component({
   selector: 'app-grafico-slums',
@@ -47,36 +46,28 @@ export class GraficoSlumsComponent implements OnInit {
       'World Average',
       { role: 'tooltip', type: 'string', p: { html: true } },
     ];
-    this.chartType = 'GeoChart';
-    this.chartTitle = 'EN_MAR_BEALITSQ';
+    this.chartType = 'ColumnChart';
+    this.chartTitle = 'Population Slums';
   }
-  prepareBeachLitterData = (data: BeachLitter[]) => {
+  prepareSlumsData = (data: Slums[]) => {
    
     console.log(data);
     for (var i in data) {
       this.chartData.push([
-        data[i]['Entity'],
-        Math.log(parseInt(String(data[i]['EN_MAR_BEALITSQ']))),
-        `
-        <div>
-        <h4 style="color: #6F016A;">${parseInt(
-          String(data[i]['EN_MAR_BEALITSQ'])
-        ).toLocaleString('de-DE')} plastic items per square km </h4>
-        <p style="margin-top: -12px">${String(data[i]['Year'])}</p>
-        </div>
-        `,
+        data[i]['Region'],
+        data[i]['World_Average']
       ]);
     }
     this.chartDataArray = [];
-    this.chartDataArray.push(new ChartData('EN_MAR_BEALITSQ', 'GeoChart', this.chartData, this.chartColumns, this.chartOptions));
+    this.chartDataArray.push(new ChartData('Population Slums', 'ColumnChart', this.chartData, this.chartColumns, this.chartOptions));
     console.log(this.chartDataArray)
   };
 
   ngOnInit(): void {
-    this.obsBeachLitter = this.http.get<BeachLitter[]>(
-      `https://5000-cristinafaltas-sdg11-ldumbynoxo4.ws-eu28.gitpod.io/PopulationSlums`
+    this.obsSlums = this.http.get<Slums[]>(
+      `https://5000-cristinafaltas-sdg11-ldumbynoxo4.ws-eu29.gitpod.io/PopulationSlums`
     );
-    this.obsBeachLitter.subscribe(this.prepareBeachLitterData);
+    this.obsSlums.subscribe(this.prepareSlumsData);
   }
 
 }
