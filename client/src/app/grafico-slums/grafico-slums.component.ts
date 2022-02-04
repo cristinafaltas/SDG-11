@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Slums } from '../models/slums.model';
 import { ChartData } from '../models/chart.model';
 
+
 @Component({
   selector: 'app-grafico-slums',
   templateUrl: './grafico-slums.component.html',
@@ -22,8 +23,7 @@ export class GraficoSlumsComponent implements OnInit {
     this.chartOptions = {
       width: 720,
       height: 480,
-      chartArea: { left: 10, top: 10, bottom: 0, height: '100%' },
-      displayMode: 'regions',
+      
       colorAxis: {
         colors: [
           '#F7FCFD',
