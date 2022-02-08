@@ -11,9 +11,24 @@ import { GraficoSlumsComponent } from './grafico-slums/grafico-slums.component';
     GoogleChartsModule
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    GraficoSlumsComponent,
+    GoogleChartsModule,
+    NgModule,
+    AppComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
+
+
+
+
+
+
+
+
+
+
+
