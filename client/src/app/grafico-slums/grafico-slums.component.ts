@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Slums } from '../models/slums.model';
 import { ChartData } from '../models/chart.model';
-
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';  
+import { GoogleChartComponent } from 'angular-google-charts';  
 
 @Component({
   selector: 'app-grafico-slums',
@@ -38,15 +38,15 @@ export class GraficoSlumsComponent implements OnInit {
       },
       legend: 'none',
       tooltip: {
-        isHtml: true,
+        isStacked: true,
       },
     };
     this.chartColumns = [
-      'Region',
-      'World Average',
+      'Country',
+      'Popularity',
       { role: 'tooltip', type: 'string', p: { html: true } },
     ];
-    this.chartType = 'ColumnChart';
+    this.chartType = 'Bar';
     this.chartTitle = 'Population Slums';
   }
   prepareSlumsData = (data: Slums[]) => {
@@ -54,12 +54,12 @@ export class GraficoSlumsComponent implements OnInit {
     console.log(data);
     for (var i in data) {
       this.chartData.push([
-        data[i]['Region'],
-        data[i]['World_Average']
+        data[i]['Country'],
+        data[i]['Popularity']
       ]);
     }
     this.chartDataArray = [];
-    this.chartDataArray.push(new ChartData('Population Slums', 'ColumnChart', this.chartData, this.chartColumns, this.chartOptions));
+    this.chartDataArray.push(new ChartData('Population Slums', 'Bar', this.chartData, this.chartColumns, this.chartOptions));
     console.log(this.chartDataArray)
   };
 
