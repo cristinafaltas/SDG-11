@@ -24,7 +24,7 @@ def index():
 def get_PopulationSlums():
     ProportionUrbanPopulationSlums = mongo.db.ProportionUrbanPopulationSlums
     output = []
-    list_curs = ProportionUrbanPopulationSlums.find({},{"_id":0}).limit(100)
+    list_curs = ProportionUrbanPopulationSlums.find({"Year":2014},{"_id":0,"Entity":1,"Year":1,"Urban population lining in slums":1,"Code":0})
     
     return dumps(list(list_curs))
 

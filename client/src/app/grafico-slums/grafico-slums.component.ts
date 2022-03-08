@@ -25,26 +25,36 @@ export class GraficoSlumsComponent implements OnInit {
       height: 480,
       
       colorAxis: {
+
+
+        values:[1000000,5000000,10000000,25000000,50000000,100000000,150000000,200000000],
         colors: [
-          '#F7FCFD',
-          '#E0ECF4',
-          '#BED3E7',
-          '#9FBCDB',
-          '#8D96C7',
-          '#8D6BB0',
-          '#88419D',
-          '#6F016A',
+          '#E0AAFF',
+          '#C77DFF',
+          '#9D4EDD',
+          '#7B2CBF',
+          '#5A189A',
+          '#3C096C',
+          '#240046',
+          '#10002B',
         ]
       },
       legend: 'none',
+      hAxis: {
+        title: 'Total Population',
+        minValue: 0
+      },
+      vAxis: {
+        title: 'City'
+      },
       tooltip: {
         isStacked: true,
       },
     };
     this.chartColumns = [
       'Country',
-      'Popularity',
-      { role: 'tooltip', type: 'string', p: { html: true } },
+      'Popularity'//,
+      //{ role: 'tooltip', type: 'string', p: { html: true } },
     ];
     this.chartType = 'Bar';
     this.chartTitle = 'Population Slums';
@@ -54,18 +64,19 @@ export class GraficoSlumsComponent implements OnInit {
     console.log(data);
     for (var i in data) {
       this.chartData.push([
-        data[i]['Country'],
-        data[i]['Popularity']
+        data[i]['Entity'],
+        data[i]['Urban population living in slums']
       ]);
+      //console.log(data[i]['Popularity']);
     }
     this.chartDataArray = [];
-    this.chartDataArray.push(new ChartData('Population Slums', 'Bar', this.chartData, this.chartColumns, this.chartOptions));
+    this.chartDataArray.push(new ChartData('Population Slums', 'GeoChart', this.chartData, this.chartColumns, this.chartOptions));
     console.log(this.chartDataArray)
   };
 
   ngOnInit(): void {
     this.obsSlums = this.http.get<Slums[]>(
-      `https://5000-cristinafaltas-sdg11-ldumbynoxo4.ws-eu29.gitpod.io/PopulationSlums`
+      `https://5000-cristinafaltas-sdg11-0nd0p0jvui0.ws-eu34.gitpod.io/PopulationSlums`
     );
     this.obsSlums.subscribe(this.prepareSlumsData);
   }

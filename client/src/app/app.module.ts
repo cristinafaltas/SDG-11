@@ -1,41 +1,22 @@
-
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http'
 import { GraficoSlumsComponent } from './grafico-slums/grafico-slums.component';
-import { NgModule,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GraficoSlumsComponent,
-    
+    GraficoSlumsComponent
   ],
+
   imports: [
     BrowserModule,
     HttpClientModule,
-    GraficoSlumsComponent,
-    GoogleChartsModule,
-    NgModule,
-    AppComponent
+    GoogleChartsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA,
-    NO_ERRORS_SCHEMA
-  ]
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
-
-
-
-
-
-
-
-
-
-
-
+export class AppModule { }
